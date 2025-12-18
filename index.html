@@ -3,116 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Chat App</title>
+    <title>Chat App</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background-color: var(--tg-theme-bg-color, #1c1c1e);
-            color: var(--tg-theme-text-color, #ffffff);
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-        .container {
-            width: 100%;
-            max-width: 400px;
-            text-align: center;
-        }
-        h2 { margin-bottom: 20px; }
-        .btn {
-            display: block;
-            width: 100%;
-            padding: 14px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 12px;
-            font-size: 16px;
-            cursor: pointer;
-            font-weight: bold;
-            text-decoration: none;
-            box-sizing: border-box;
-            transition: transform 0.1s;
-        }
-        .btn:active { transform: scale(0.98); }
-        .btn-primary {
-            background-color: var(--tg-theme-button-color, #3390ec);
-            color: var(--tg-theme-button-text-color, #ffffff);
-        }
-        .btn-secondary {
-            background-color: var(--tg-theme-secondary-bg-color, #2c2c2e);
-            color: var(--tg-theme-text-color, #ffffff);
-            border: 1px solid #444;
-        }
-        .premium-box {
-            background: linear-gradient(135deg, #ff007f, #ffcc00);
-            padding: 20px;
-            border-radius: 15px;
-            color: white;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(255, 0, 127, 0.3);
-        }
-        .hidden { display: none; }
-        .grid { display: flex; gap: 10px; }
+        body { font-family: sans-serif; background: #1c1c1e; color: white; text-align: center; padding: 20px; }
+        .btn { background: #3390ec; color: white; padding: 15px; width: 100%; border: none; border-radius: 10px; font-size: 16px; margin: 10px 0; display: block; text-decoration: none; }
+        .btn-sec { background: #444; }
     </style>
 </head>
 <body>
-
-<div class="container">
-    <!-- স্ক্রিন ১: ভাষা নির্বাচন -->
-    <div id="lang-screen">
-        <h2>Language / ভাষা</h2>
-        <button class="btn btn-primary" onclick="showMain()">🇧🇩 বাংলা</button>
-        <button class="btn btn-secondary" onclick="showMain()">🇺🇸 English</button>
+    <h3>স্বাগতম!</h3>
+    <a href="https://t.me/rateetara_bot?startgroup=true" class="btn">➕ গ্রুপে অ্যাড করুন</a>
+    <div style="display: flex; gap: 10px;">
+        <a href="https://t.me/+x7CPJm_Otcs2MmQ1" class="btn btn-sec">👥 Group</a>
+        <a href="https://t.me/+g7XFPRuwH85iZTI9" class="btn btn-sec">📢 Channel</a>
     </div>
-
-    <!-- স্ক্রিন ২: মেইন অ্যাপ -->
-    <div id="main-screen" class="hidden">
-        <div class="premium-box">
-            💎 <b>PREMIUM UNLOCKED</b><br>
-            <small>Viral Videos • Live Calls • Exclusive Shows</small>
-        </div>
-
-        <!-- গ্রুপ অ্যাড বাটন -->
-        <a href="https://t.me/rateetara_bot?startgroup=true" class="btn btn-primary">➕ Add to Your Group</a>
-        
-        <!-- সোশ্যাল লিংক -->
-        <div class="grid">
-            <a href="https://t.me/+x7CPJm_Otcs2MmQ1" class="btn btn-secondary">👥 Group</a>
-            <a href="https://t.me/+g7XFPRuwH85iZTI9" class="btn btn-secondary">📢 Channel</a>
-        </div>
-
-        <p style="margin-top: 20px; opacity: 0.7;">Select Your Identity:</p>
-        
-        <!-- ডাটা পাঠানোর বাটন -->
-        <div class="grid">
-            <button class="btn btn-secondary" onclick="sendData('Boy 👦')">👦 Boy</button>
-            <button class="btn btn-secondary" onclick="sendData('Girl 👧')">👧 Girl</button>
-        </div>
-
-        <div style="margin-top: 30px;">
-            <a href="https://t.me/rateetara_bot" style="color: #666; text-decoration: none; font-size: 14px;">Support & Help 🛠</a>
-        </div>
+    <p>আপনার পরিচয়:</p>
+    <div style="display: flex; gap: 10px;">
+        <button class="btn btn-sec" onclick="Telegram.WebApp.sendData('Boy 👦')">👦 Boy</button>
+        <button class="btn btn-sec" onclick="Telegram.WebApp.sendData('Girl 👧')">👧 Girl</button>
     </div>
-</div>
-
-<script>
-    let tg = window.Telegram.WebApp;
-    tg.expand(); // অ্যাপ ফুল স্ক্রিন হবে
-
-    function showMain() {
-        document.getElementById('lang-screen').classList.add('hidden');
-        document.getElementById('main-screen').classList.remove('hidden');
-    }
-
-    function sendData(type) {
-        // এই ডাটা পাইথন বটের কাছে যাবে
-        tg.sendData(type);
-    }
-</script>
-
+    <script>Telegram.WebApp.expand();</script>
 </body>
 </html>
