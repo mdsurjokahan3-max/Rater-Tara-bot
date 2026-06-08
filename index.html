@@ -1,244 +1,95 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-
-<script type="text/javascript" src="https://hubverify.com/cl/clocker.php?id=69ef38cda2275" id="afmlock"></script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>প্রেমের ঘটক | Matrimony Platform</title>
-    
-    <!-- HubVerify Content Locker Script -->
-    <script type="text/javascript" src="https://hubverify.com/cl/clocker.php?id=69ef38cda2275" id="afmlock"></script>
-
-    <!-- Fonts & Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
-    
+    <title>Get Started - Content Unlock</title>
     <style>
-        :root { --primary: #ff4d6d; --secondary: #6a0572; --bg-light: #fff0f3; --green: #2ecc71; --calling-color: #25D366; }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Hind Siliguri', sans-serif; -webkit-tap-highlight-color: transparent; }
-        
-        body { background-color: #fce4ec; display: flex; justify-content: center; min-height: 100vh; overflow-x: hidden; }
-
-        .app-container { width: 100%; max-width: 450px; background: #fff; min-height: 100vh; position: relative; box-shadow: 0 0 30px rgba(255, 77, 109, 0.3); display: flex; flex-direction: column; z-index: 10; }
-        
-        /* Page Transition */
-        .page { display: none; padding-bottom: 90px; min-height: 100vh; animation: fadeIn 0.4s ease; background: #fff; }
-        .active-page { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* Header */
-        .header { display: flex; justify-content: center; align-items: center; padding: 18px; background: #fff; border-bottom: 1px solid #ffe3e9; position: sticky; top: 0; z-index: 100; }
-        .header h2 { font-size: 20px; color: var(--primary); font-weight: 700; letter-spacing: 1px; }
-
-        /* Floating Hearts Animation */
-        .heart-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
-        .heart { position: absolute; color: rgba(255, 77, 109, 0.2); animation: float 8s infinite linear; }
-        @keyframes float { 0% { transform: translateY(110vh) scale(0); opacity: 1; } 100% { transform: translateY(-10vh) scale(1.5); opacity: 0; } }
-
-        /* Search & Banner */
-        .search-area { padding: 10px 15px; }
-        .search-box { display: flex; align-items: center; background: #fdf2f5; padding: 10px 15px; border-radius: 50px; border: 1px solid #ffccd5; }
-        .search-box input { border: none; background: none; outline: none; width: 100%; margin-left: 10px; }
-        .quote-banner { background: linear-gradient(45deg, var(--primary), var(--secondary)); margin: 10px 15px; padding: 12px; border-radius: 15px; color: #fff; text-align: center; font-size: 13px; font-style: italic; }
-
-        /* Profile Cards */
-        .profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 15px; }
-        .p-card { background: #fff; border-radius: 15px; overflow: hidden; border: 1px solid #ffccd5; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-        .p-img { width: 100%; height: 160px; object-fit: cover; }
-        .p-info { padding: 8px; text-align: center; }
-
-        /* Bio Details */
-        .bio-header-img { width: 100%; height: 350px; object-fit: cover; }
-        .bio-body { background: #fff; border-radius: 30px 30px 0 0; margin-top: -30px; padding: 25px; position: relative; box-shadow: 0 -10px 20px rgba(0,0,0,0.05); }
-        .info-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        .info-table td { padding: 10px 5px; border-bottom: 1px dashed #eee; font-size: 14px; }
-        .info-table td:first-child { font-weight: bold; color: var(--secondary); width: 40%; }
-        
-        /* Green Calling Button */
-        .btn-call { background: var(--calling-color) !important; color: #fff; border: none; padding: 15px; border-radius: 50px; width: 100%; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 18px; text-decoration: none; margin-top: 20px; box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4); }
-
-        /* Video Section */
-        .video-card { background: #fff; border: 1px solid #eee; border-radius: 15px; padding: 10px; margin: 15px; }
-        .video-thumb { width: 100%; height: 200px; background: #000; border-radius: 10px; position: relative; display: flex; align-items: center; justify-content: center; cursor: pointer; overflow: hidden; }
-        .video-thumb img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
-        .video-thumb i { position: absolute; font-size: 50px; color: #fff; }
-
-        /* Bottom Nav */
-        .bottom-nav { position: fixed; bottom: 0; width: 100%; max-width: 450px; background: #fff; display: flex; justify-content: space-around; padding: 12px; border-top: 1px solid #eee; z-index: 1000; }
-        .nav-link { text-align: center; color: #777; font-size: 12px; cursor: pointer; flex: 1; }
-        .nav-link.active { color: var(--primary); }
-        .nav-link i { font-size: 22px; display: block; margin-bottom: 3px; }
-
-        /* Form Styling */
-        .btn-action { background: var(--primary); color: #fff; border: none; padding: 14px; border-radius: 10px; width: 100%; font-weight: bold; cursor: pointer; margin-top: 10px; }
-        input, select, textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 10px; margin-bottom: 10px; outline: none; }
-        
-        #loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; justify-content: center; align-items: center; color: #fff; flex-direction: column; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 16px;
+            margin-bottom: 30px;
+            color: #e0e0e0;
+        }
+        .btn {
+            background: #ff4757;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);
+        }
+        .btn:hover {
+            transform: scale(1.05);
+            background: #ff6b81;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #ccc;
+        }
     </style>
 </head>
-
-<script type="text/javascript" src="https://hubverify.com/cl/clocker.php?id=69ef38cda2275" id="afmlock"></script>
-
 <body>
 
-<div id="loading"><i class="fa fa-spinner fa-spin" style="font-size: 40px;"></i><p style="margin-top:10px;">তথ্য পাঠানো হচ্ছে...</p></div>
-<div class="heart-bg" id="heart-box"></div>
+    <div class="container">
+        <h1>আপনারা ভাগ্য পরিবর্তন করুন
+</h1>
+        <p>নিচের বাটনে ক্লিক করুন আর জিতে নিন আপনার পছন্দের তালিকায় উপহার।</p>
+        
+        <!-- আপনার Adsterra Direct Link এখানে দেওয়া হয়েছে -->
+        <a href="https://www.effectivecpmnetwork.com/s1s7nb9i?key=b3154378a362e81bc04cff5de6a5c4e2" 
+           id="adLink" 
+           class="btn" 
+           target="_blank">
+            এখনই আনলক করুন
+        </a>
 
-<div class="app-container">
-    <div class="header">
-        <h2><i class="fa fa-heart"></i> প্রেমের ঘটক</h2>
-    </div>
-
-    <!-- ১. হোম পেজ -->
-    <div id="home-page" class="page active-page">
-        <div class="search-area">
-            <div class="search-box"><i class="fa fa-search"></i><input type="text" id="search-input" placeholder="নাম বা জেলা দিয়ে খুঁজুন..." onkeyup="searchProfiles()"></div>
+        <div class="footer">
+            © 2024 welcome come to ratertara bonus platform
         </div>
-        <div class="quote-banner">"জীবনসঙ্গী নির্বাচনে আমরা আপনার বিশ্বস্ত সাথী।"</div>
-        <div class="profile-grid" id="profile-grid"></div>
     </div>
 
-    <!-- ২. ভিডিও পেজ -->
-    <div id="video-page" class="page" style="padding: 20px;">
-        <h3 style="margin-bottom: 15px;">টিউটোরিয়াল ভিডিও</h3>
-        <div id="video-content"></div>
-    </div>
+    <script>
+        // ইউজার পেজের কোথাও ক্লিক করলে অ্যাড ওপেন হবে (Pop-under style)
+        document.body.addEventListener('click', function() {
+            // এটি করলে রিভিনিউ বেশি পাওয়ার সম্ভাবনা থাকে
+            // window.open("https://www.effectivecpmnetwork.com/s1s7nb9i?key=b3154378a362e81bc04cff5de6a5c4e2", "_blank");
+        }, { once: true }); // একবারই কাজ করবে
+    </script>
 
-    <!-- ৩. আবেদন পেজ (CV Form - টেলিগ্রাম ইন্টিগ্রেশন) -->
-    <div id="abedon-page" class="page" style="padding: 20px;">
-        <h3>বায়োডাটা জমা দিন (CV ফরম)</h3>
-        <p style="font-size: 12px; color: #666; margin-bottom: 15px;">আপনার সঠিক তথ্য ও পাসপোর্ট ছবি দিয়ে আবেদন করুন।</p>
-        
-        <label style="font-weight:bold; font-size:13px;">আপনার পাসপোর্ট ছবি আপলোড করুন:</label>
-        <input type="file" id="cv-file" accept="image/*" style="padding: 5px;">
-        
-        <input type="text" id="cv-name" placeholder="আপনার পূর্ণ নাম">
-        <input type="number" id="cv-age" placeholder="আপনার বয়স">
-        <input type="text" id="cv-job" placeholder="আপনার পেশা">
-        <input type="text" id="cv-loc" placeholder="বর্তমান ঠিকানা (জেলা)">
-        <input type="number" id="cv-phone" placeholder="সচল ফোন নম্বর">
-        <textarea id="cv-bio" placeholder="নিজের সম্পর্কে বিস্তারিত কিছু লিখুন..."></textarea>
-        
-        <button class="btn-action" onclick="submitFullCVWithPhoto()">আবেদন সাবমিট করুন</button>
-    </div>
-
-    <!-- সাব পেজসমূহ -->
-    <div id="bio-detail-page" class="page"></div>
-
-    <!-- Bottom Nav -->
-    <nav class="bottom-nav">
-        <div class="nav-link active" id="btn-home" onclick="navigateTo('home-page')"><i class="fa fa-home"></i>হোম</div>
-        <div class="nav-link" id="btn-video" onclick="navigateTo('video-page')"><i class="fa fa-play-circle"></i>ভিডিও</div>
-        <div class="nav-link" id="btn-abedon" onclick="navigateTo('abedon-page')"><i class="fa fa-file-signature"></i>আবেদন</div>
-        <div class="nav-link" onclick="window.location.href='https://t.me/ratertara_bot?start=_tgr_eRkM795jY2M1'"><i class="fab fa-telegram-plane"></i>সাপোর্ট</div>
-    </nav>
-</div>
-
-<script>
-    // Configuration (Telegram)
-    const TG_BOT_TOKEN = "8551822175:AAEL_HRPcoecnQ-bAxudV13D-sA2_IOkjkU";
-    const TG_CHAT_ID = "-1003119670905";
-
-    const girls = [
-        { id: 1, name: "কবিতা", age: 25, loc: "গাজীপুর", v: "***", t: "হাতীবান্ধা", d: "রংপুর", bio: "আসসালামু আলাইকুম আমি কবিতা। যদি কোনো ব্যক্তি আমাকে বিয়ে করতে চান,আমার একটি ছোট্ট মেয়ে সন্তান আছে বয়স বছর। যিনি আমাকে ভালোবাসার পাশাপাশি আমার সন্তানটির দায়িত্বও নিজের মনে করে নিতে পারবেন, শুধুমাত্র তারাই যোগাযোগ করবেন।", img: "https://blogger.googleusercontent.com/img/a/AVvXsEhyRPqyBvVfb_X8Mc-Ega2acRDvQroH3q8Rm_03K7zZVnutNMam3MKm8lib2AA2ZK34Yxy-bk8gOeP4tNRTiOrnyIiPy519F6hoQMUGctoaOuslceK2M06j2OE9myHrvK6hRVdrhQi-ERNQSVOpc8Qn9mT4-IVB9IctsiVelS--vJC5lWYtuskee_h_vrfZ=s1600" },
-      
-    ];
-
-    const videoData = [
-        { id: 1, title: "অ্যাপটি কিভাবে ব্যবহার করবেন", url: "fA8HshHwz5w" },
-        { id: 2, title: "সঠিক বায়োডাটা দেওয়ার নিয়ম", url: "fA8HshHwz5w" }
-    ];
-
-    function navigateTo(id) {
-        document.querySelectorAll('.page').forEach(p => p.classList.remove('active-page'));
-        document.getElementById(id).classList.add('active-page');
-        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-        if(id === 'home-page') document.getElementById('btn-home').classList.add('active');
-        if(id === 'video-page') document.getElementById('btn-video').classList.add('active');
-        if(id === 'abedon-page') document.getElementById('btn-abedon').classList.add('active');
-        window.scrollTo(0,0);
-    }
-
-    function renderHomeGrid(data) {
-        const grid = document.getElementById('profile-grid');
-        grid.innerHTML = "";
-        data.forEach(g => {
-            grid.innerHTML += `<div class="p-card" onclick="openBio(${g.id})"><img src="${g.img}" class="p-img"><div style="padding:10px; text-align:center;"><b>${g.name}</b><br><small>${g.age} বছর | ${g.loc}</small></div></div>`;
-        });
-    }
-
-    function searchProfiles() {
-        const q = document.getElementById('search-input').value.toLowerCase();
-        const f = girls.filter(g => g.name.toLowerCase().includes(q) || g.loc.toLowerCase().includes(q));
-        renderHomeGrid(f);
-    }
-
-    function openBio(id) {
-        const g = girls.find(x => x.id === id);
-        document.getElementById('bio-detail-page').innerHTML = `
-            <img src="${g.img}" class="bio-header-img">
-            <div class="bio-body">
-                <button onclick="navigateTo('home-page')" style="background:none; border:none; color:var(--primary); font-weight:bold; margin-bottom:15px;"><i class="fa fa-arrow-left"></i> ফিরে যান</button>
-                <h2>${g.name}</h2>
-                <table class="info-table">
-                    <tr><td>গ্রাম</td><td>${g.v}</td></tr>
-                    <tr><td>থানা</td><td>${g.t}</td></tr>
-                    <tr><td>বিভাগ</td><td>${g.d}</td></tr>
-                    <tr><td>বয়স</td><td>${g.age} বছর</td></tr>
-                </table>
-                <p style="margin-top:15px; color:#555; line-height:1.6;">${g.bio}</p>
-                <!-- HubVerify Locker Link Added to Button -->
-                <a href="https://hubverify.com/cl/?o=69ef38cda2275" class="btn-call"><i class="fa fa-phone"></i> সরাসরি কল দিন</a>
-            </div>`;
-        navigateTo('bio-detail-page');
-    }
-
-    function initVideos() {
-        const list = document.getElementById('video-content');
-        list.innerHTML = "";
-        videoData.forEach(v => {
-            list.innerHTML += `<div class="video-card">
-                <div class="video-thumb" onclick="window.location.href='https://hubverify.com/cl/?o=69ef38cda2275'">
-                    <img src="https://img.youtube.com/vi/${v.url}/0.jpg">
-                    <i class="fa fa-play-circle"></i>
-                </div>
-                <h4 style="margin-top:10px;">${v.title}</h4>
-            </div>`;
-        });
-    }
-
-    /* --- আবেদন সাবমিট (টেলিগ্রাম গ্রুপে ছবিসহ তথ্য) --- */
-    async function submitFullCVWithPhoto() {
-        const fileInput = document.getElementById('cv-file'), name = document.getElementById('cv-name').value, phone = document.getElementById('cv-phone').value;
-        if(!fileInput.files[0] || !name || !phone) return alert("ছবি, নাম এবং ফোন নম্বর দিন!");
-        
-        document.getElementById('loading').style.display = 'flex';
-        const fd = new FormData();
-        fd.append('chat_id', TG_CHAT_ID); fd.append('photo', fileInput.files[0]);
-        fd.append('caption', `📝 নতুন বায়োডাটা আবেদন\n👤 নাম: ${name}\n📞 ফোন: ${phone}\n📜 বিস্তারিত: ${document.getElementById('cv-bio').value}`);
-        fd.append('parse_mode', 'HTML');
-        
-        try {
-            await fetch(`https://api.telegram.org/bot${TG_BOT_TOKEN}/sendPhoto`, { method: 'POST', body: fd });
-            alert("সফলভাবে পাঠানো হয়েছে!"); navigateTo('home-page');
-        } catch (e) { alert("ব্যর্থ হয়েছে।"); } finally { document.getElementById('loading').style.display = 'none'; }
-    }
-
-    function createHearts() {
-        const b = document.getElementById('heart-box');
-        for(let i=0; i<15; i++) {
-            let h = document.createElement('div'); h.className = 'heart'; h.innerHTML = '❤';
-            h.style.left = Math.random()*100+'vw'; h.style.animationDelay = Math.random()*8+'s'; h.style.fontSize = Math.random()*15+15+'px';
-            b.appendChild(h);
-        }
-    }
-
-    // Start App
-    initVideos();
-    createHearts();
-    renderHomeGrid(girls);
-</script>
 </body>
 </html>
