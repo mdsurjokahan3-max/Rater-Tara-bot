@@ -1,99 +1,2149 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Get Started - Content Unlock</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
-        body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-        }
-        .container {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 40px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-            text-align: center;
-            max-width: 400px;
-            width: 90%;
-        }
-        h1 {
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-        p {
-            font-size: 16px;
-            margin-bottom: 30px;
-            color: #e0e0e0;
-        }
-        .btn {
-            background: #ff4757;
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 50px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);
-        }
-        .btn:hover {
-            transform: scale(1.05);
-            background: #ff6b81;
-        }
-        .footer {
-            margin-top: 20px;
-            font-size: 12px;
-            color: #ccc;
-        }
-    </style>
-</head>
-<body>
-    
-    <script src="https://pl29413054.effectivecpmnetwork.com/cc/38/ab/cc38abe1eb7aad0034d76db66ea08526.js"></script>
-    
-    <div class="container">
-        <h1>আপনারা ভাগ্য পরিবর্তন করুন
-</h1>
-        <p>নিচের বাটনে ক্লিক করুন আর জিতে নিন আপনার পছন্দের তালিকায় উপহার।</p>
-        
-        <!-- আপনার Adsterra Direct Link এখানে দেওয়া হয়েছে -->
-        <a href="https://www.effectivecpmnetwork.com/hsyj9k6u7?key=a8341598c1ffa0791ce198a1fc120cb3" 
-           id="adLink" 
-           class="btn" 
-           target="_blank">
-            এখনই আনলক করুন
-        </a>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <div class="footer">
-            © 2024 welcome come to ratertara bonus platform
+<title>Admin Panel | Rater Tara Video Apps</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<!-- Firebase 9.6.1 -->
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:'Hind Siliguri',sans-serif;
+    background:#f2f7f7;
+    color:#222;
+}
+
+button,
+input{
+    font-family:inherit;
+}
+
+.app{
+    width:100%;
+    max-width:600px;
+    min-height:100vh;
+    margin:auto;
+    background:#fff;
+    box-shadow:0 0 30px rgba(0,0,0,.08);
+}
+
+/* ================= HEADER ================= */
+
+.header{
+    background:linear-gradient(135deg,#008b8b,#006666);
+    color:#fff;
+    padding:18px 16px;
+    position:sticky;
+    top:0;
+    z-index:50;
+    box-shadow:0 4px 15px rgba(0,0,0,.15);
+}
+
+.header-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.header-title{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.header-title i{
+    font-size:24px;
+}
+
+.header-title h1{
+    font-size:21px;
+    font-weight:700;
+}
+
+.logout-btn{
+    border:0;
+    background:rgba(255,255,255,.15);
+    color:#fff;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:17px;
+}
+
+.logout-btn:active{
+    transform:scale(.94);
+}
+
+/* ================= ADMIN INFO ================= */
+
+.admin-info{
+    padding:14px 16px;
+    background:#f8ffff;
+    border-bottom:1px solid #e5eeee;
+}
+
+.admin-email{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:#006d6d;
+    font-size:14px;
+    font-weight:600;
+}
+
+.admin-email i{
+    font-size:16px;
+}
+
+/* ================= STATS ================= */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    padding:15px;
+    background:#fff;
+}
+
+.stat{
+    border-radius:14px;
+    padding:14px 8px;
+    text-align:center;
+    background:#f5fafa;
+    border:1px solid #e4eeee;
+}
+
+.stat i{
+    font-size:19px;
+    color:#008b8b;
+    margin-bottom:5px;
+}
+
+.stat strong{
+    display:block;
+    font-size:22px;
+    color:#006666;
+}
+
+.stat span{
+    display:block;
+    font-size:12px;
+    color:#777;
+}
+
+/* ================= TABS ================= */
+
+.tabs{
+    display:flex;
+    gap:7px;
+    overflow-x:auto;
+    padding:0 15px 14px;
+    scrollbar-width:none;
+}
+
+.tabs::-webkit-scrollbar{
+    display:none;
+}
+
+.tab{
+    flex:1;
+    min-width:90px;
+    border:1px solid #d7e5e5;
+    background:#fff;
+    color:#555;
+    padding:9px 10px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:13px;
+    font-weight:600;
+}
+
+.tab.active{
+    background:#008b8b;
+    color:#fff;
+    border-color:#008b8b;
+}
+
+/* ================= SEARCH ================= */
+
+.search-box{
+    padding:0 15px 15px;
+}
+
+.search{
+    width:100%;
+    border:1px solid #dce8e8;
+    background:#f8fbfb;
+    border-radius:12px;
+    padding:12px 14px;
+    outline:none;
+    font-size:14px;
+}
+
+.search:focus{
+    border-color:#008b8b;
+    background:#fff;
+}
+
+/* ================= REFRESH ================= */
+
+.toolbar{
+    padding:0 15px 15px;
+    display:flex;
+    justify-content:flex-end;
+}
+
+.refresh-btn{
+    border:0;
+    background:#e8f7f7;
+    color:#006d6d;
+    border-radius:10px;
+    padding:9px 14px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.refresh-btn i{
+    margin-right:5px;
+}
+
+/* ================= POSTS ================= */
+
+.posts{
+    padding:0 15px 30px;
+}
+
+.post-card{
+    border:1px solid #e1ebeb;
+    border-radius:16px;
+    margin-bottom:15px;
+    overflow:hidden;
+    background:#fff;
+    box-shadow:0 5px 18px rgba(0,0,0,.05);
+}
+
+.post-image{
+    width:100%;
+    height:190px;
+    object-fit:cover;
+    display:block;
+    background:#e9eeee;
+}
+
+.post-content{
+    padding:14px;
+}
+
+.badges{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    margin-bottom:8px;
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
+    padding:4px 9px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:600;
+}
+
+.badge-old{
+    background:#eee8ff;
+    color:#6346a3;
+}
+
+.badge-new{
+    background:#e2f8f3;
+    color:#007565;
+}
+
+.badge-pending{
+    background:#fff4d6;
+    color:#996c00;
+}
+
+.badge-published{
+    background:#dcf8e6;
+    color:#087832;
+}
+
+.badge-rejected{
+    background:#ffe1e1;
+    color:#b00000;
+}
+
+.badge-type{
+    background:#eaf3ff;
+    color:#2663a6;
+}
+
+.post-title{
+    font-size:18px;
+    font-weight:700;
+    color:#222;
+    line-height:1.35;
+    margin-bottom:6px;
+}
+
+.post-name{
+    font-size:13px;
+    color:#006f6f;
+    margin-bottom:5px;
+}
+
+.post-name i{
+    margin-right:4px;
+}
+
+.post-bio{
+    font-size:13px;
+    color:#777;
+    margin-bottom:7px;
+}
+
+.post-description{
+    font-size:13px;
+    color:#666;
+    line-height:1.6;
+    margin-bottom:10px;
+}
+
+.post-meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    color:#888;
+    font-size:12px;
+    padding-top:8px;
+    border-top:1px solid #edf2f2;
+}
+
+.post-meta i{
+    color:#008b8b;
+    margin-right:3px;
+}
+
+/* ================= ACTIONS ================= */
+
+.actions{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:7px;
+    padding:12px 14px 14px;
+}
+
+.action-btn{
+    border:0;
+    border-radius:9px;
+    padding:10px 6px;
+    cursor:pointer;
+    font-size:13px;
+    font-weight:600;
+}
+
+.action-btn i{
+    margin-right:4px;
+}
+
+.btn-view{
+    background:#e9f5ff;
+    color:#1467a5;
+}
+
+.btn-publish{
+    background:#dcf8e6;
+    color:#087832;
+}
+
+.btn-reject{
+    background:#fff1d8;
+    color:#9b6800;
+}
+
+.btn-delete{
+    background:#ffe3e3;
+    color:#b00000;
+}
+
+.btn-unpublish{
+    background:#eee;
+    color:#555;
+}
+
+.action-btn:active{
+    transform:scale(.97);
+}
+
+/* ================= EMPTY ================= */
+
+.empty{
+    text-align:center;
+    padding:50px 20px;
+    color:#888;
+}
+
+.empty i{
+    font-size:45px;
+    color:#b8cccc;
+    margin-bottom:12px;
+}
+
+.empty h3{
+    font-size:17px;
+    color:#666;
+    margin-bottom:5px;
+}
+
+.empty p{
+    font-size:13px;
+}
+
+/* ================= LOADING ================= */
+
+.loading{
+    text-align:center;
+    padding:50px 20px;
+    color:#008080;
+}
+
+.loading i{
+    font-size:30px;
+    animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+    from{transform:rotate(0deg);}
+    to{transform:rotate(360deg);}
+}
+
+/* ================= LOGIN ================= */
+
+.login-screen{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:linear-gradient(135deg,#008b8b,#003f3f);
+}
+
+.login-card{
+    width:100%;
+    max-width:420px;
+    background:#fff;
+    border-radius:22px;
+    padding:28px 22px;
+    box-shadow:0 20px 50px rgba(0,0,0,.25);
+}
+
+.login-icon{
+    width:70px;
+    height:70px;
+    margin:0 auto 15px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#008b8b,#006666);
+    color:#fff;
+    font-size:28px;
+}
+
+.login-card h2{
+    text-align:center;
+    color:#006666;
+    margin-bottom:6px;
+}
+
+.login-card p{
+    text-align:center;
+    color:#777;
+    font-size:13px;
+    margin-bottom:22px;
+}
+
+.login-input{
+    width:100%;
+    border:1px solid #d8e5e5;
+    border-radius:11px;
+    padding:12px;
+    outline:none;
+    margin-bottom:11px;
+    font-size:14px;
+}
+
+.login-input:focus{
+    border-color:#008b8b;
+}
+
+.login-btn{
+    width:100%;
+    border:0;
+    background:linear-gradient(135deg,#008b8b,#006666);
+    color:#fff;
+    border-radius:11px;
+    padding:12px;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:700;
+}
+
+.login-error{
+    display:none;
+    background:#ffe6e6;
+    color:#b00000;
+    border-radius:9px;
+    padding:10px;
+    margin-bottom:12px;
+    text-align:center;
+    font-size:13px;
+}
+
+.login-loading{
+    display:none;
+    text-align:center;
+    margin-top:12px;
+    color:#008b8b;
+    font-size:13px;
+}
+
+/* ================= TOAST ================= */
+
+.toast{
+    position:fixed;
+    left:50%;
+    bottom:25px;
+    transform:translateX(-50%) translateY(100px);
+    width:calc(100% - 30px);
+    max-width:500px;
+    background:#222;
+    color:#fff;
+    padding:13px 16px;
+    border-radius:12px;
+    text-align:center;
+    z-index:9999;
+    opacity:0;
+    transition:.3s;
+    font-size:14px;
+}
+
+.toast.show{
+    transform:translateX(-50%) translateY(0);
+    opacity:1;
+}
+
+.toast.success{
+    background:#087832;
+}
+
+.toast.error{
+    background:#b00000;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:380px){
+    .header-title h1{
+        font-size:18px;
+    }
+
+    .stats{
+        gap:6px;
+        padding:10px;
+    }
+
+    .stat{
+        padding:11px 5px;
+    }
+
+    .stat strong{
+        font-size:19px;
+    }
+
+    .actions{
+        grid-template-columns:1fr 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= LOGIN ================= -->
+
+<div id="loginScreen" class="login-screen">
+
+    <div class="login-card">
+
+        <div class="login-icon">
+            <i class="fa-solid fa-shield-halved"></i>
         </div>
+
+        <h2>Admin Panel</h2>
+
+        <p>Rater Tara Video Apps</p>
+
+        <div id="loginError" class="login-error"></div>
+
+        <input
+            type="email"
+            id="email"
+            class="login-input"
+            placeholder="Admin Email"
+            autocomplete="email"
+        >
+
+        <input
+            type="password"
+            id="password"
+            class="login-input"
+            placeholder="Password"
+            autocomplete="current-password"
+        >
+
+        <button class="login-btn" onclick="loginAdmin()">
+            <i class="fa-solid fa-right-to-bracket"></i>
+            Login
+        </button>
+
+        <div id="loginLoading" class="login-loading">
+            <i class="fa-solid fa-spinner fa-spin"></i>
+            Login হচ্ছে...
+        </div>
+
     </div>
 
-    <script>
-        // ইউজার পেজের কোথাও ক্লিক করলে অ্যাড ওপেন হবে (Pop-under style)
-        document.body.addEventListener('click', function() {
-            // এটি করলে রিভিনিউ বেশি পাওয়ার সম্ভাবনা থাকে
-            // window.open("https://www.effectivecpmnetwork.com/hsyj9k6u7?key=a8341598c1ffa0791ce198a1fc120cb3", "_blank");
-        }, { once: true }); // একবারই কাজ করবে
-    </script>
-    
-<script src="https://pl29413054.effectivecpmnetwork.com/cc/38/ab/cc38abe1eb7aad0034d76db66ea08526.js"></script>
-    
+</div>
+
+
+<!-- ================= ADMIN APP ================= -->
+
+<div id="adminApp" class="app" style="display:none;">
+
+    <header class="header">
+
+        <div class="header-top">
+
+            <div class="header-title">
+                <i class="fa-solid fa-user-shield"></i>
+
+                <h1>Rater Tara Admin</h1>
+            </div>
+
+            <button class="logout-btn" onclick="logoutAdmin()" title="Logout">
+                <i class="fa-solid fa-right-from-bracket"></i>
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <div class="admin-info">
+
+        <div class="admin-email">
+            <i class="fa-solid fa-circle-check"></i>
+
+            <span id="adminEmail">
+                Admin
+            </span>
+        </div>
+
+    </div>
+
+
+    <!-- ================= STATS ================= -->
+
+    <section class="stats">
+
+        <div class="stat">
+            <i class="fa-solid fa-video"></i>
+            <strong id="totalCount">0</strong>
+            <span>মোট ভিডিও</span>
+        </div>
+
+        <div class="stat">
+            <i class="fa-solid fa-clock"></i>
+            <strong id="pendingCount">0</strong>
+            <span>Pending</span>
+        </div>
+
+        <div class="stat">
+            <i class="fa-solid fa-circle-check"></i>
+            <strong id="publishedCount">0</strong>
+            <span>Published</span>
+        </div>
+
+    </section>
+
+
+    <!-- ================= TABS ================= -->
+
+    <div class="tabs">
+
+        <button
+            class="tab active"
+            data-filter="all"
+            onclick="setFilter('all',this)"
+        >
+            সব
+        </button>
+
+        <button
+            class="tab"
+            data-filter="pending"
+            onclick="setFilter('pending',this)"
+        >
+            Pending
+        </button>
+
+        <button
+            class="tab"
+            data-filter="published"
+            onclick="setFilter('published',this)"
+        >
+            Published
+        </button>
+
+        <button
+            class="tab"
+            data-filter="rejected"
+            onclick="setFilter('rejected',this)"
+        >
+            Rejected
+        </button>
+
+    </div>
+
+
+    <!-- ================= SEARCH ================= -->
+
+    <div class="search-box">
+
+        <input
+            type="search"
+            id="searchInput"
+            class="search"
+            placeholder="ভিডিওর নাম / শিরোনাম খুঁজুন..."
+            oninput="renderPosts()"
+        >
+
+    </div>
+
+
+    <div class="toolbar">
+
+        <button class="refresh-btn" onclick="loadPosts()">
+            <i class="fa-solid fa-rotate"></i>
+            Refresh
+        </button>
+
+    </div>
+
+
+    <!-- ================= POSTS ================= -->
+
+    <main id="postsContainer" class="posts">
+
+        <div class="loading">
+            <i class="fa-solid fa-spinner"></i>
+            <p>ভিডিও লোড হচ্ছে...</p>
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- ================= TOAST ================= -->
+
+<div id="toast" class="toast"></div>
+
+
+<script>
+
+/* =========================================================
+   FIREBASE CONFIG
+   RATER TARA VIDEO APPS
+========================================================= */
+
+const firebaseConfig = {
+    apiKey: "AIzaSyD7MR0gTPVeqMUMRTIip9Zp6oV0J7iVIaY",
+    authDomain: "rater-tara-video-apps.firebaseapp.com",
+    databaseURL: "https://rater-tara-video-apps-default-rtdb.firebaseio.com",
+    projectId: "rater-tara-video-apps",
+    storageBucket: "rater-tara-video-apps.firebasestorage.app",
+    messagingSenderId: "622484215343",
+    appId: "1:622484215343:web:90e995aa400cd103ea18da",
+    measurementId: "G-3G9Z0WVSDE"
+};
+
+
+/* =========================================================
+   INITIALIZE FIREBASE
+========================================================= */
+
+if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+}
+
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+
+/* =========================================================
+   ADMIN EMAIL
+========================================================= */
+
+const ADMIN_EMAIL = "monidalia.no1@gmail.com";
+
+
+/* =========================================================
+   GLOBAL VARIABLES
+========================================================= */
+
+let allPosts = [];
+let currentFilter = "all";
+
+
+/* =========================================================
+   AUTH STATE
+========================================================= */
+
+auth.onAuthStateChanged(async function(user){
+
+    if(user){
+
+        const userEmail =
+            (user.email || "").toLowerCase();
+
+        if(userEmail !== ADMIN_EMAIL.toLowerCase()){
+
+            showLoginError(
+                "এই অ্যাকাউন্টের Admin Access নেই।"
+            );
+
+            await auth.signOut();
+
+            return;
+        }
+
+        document.getElementById("loginScreen").style.display =
+            "none";
+
+        document.getElementById("adminApp").style.display =
+            "block";
+
+        document.getElementById("adminEmail").textContent =
+            user.email;
+
+        await loadPosts();
+
+    }else{
+
+        document.getElementById("loginScreen").style.display =
+            "flex";
+
+        document.getElementById("adminApp").style.display =
+            "none";
+    }
+
+});
+
+
+/* =========================================================
+   ADMIN LOGIN
+========================================================= */
+
+async function loginAdmin(){
+
+    const email =
+        document.getElementById("email").value.trim();
+
+    const password =
+        document.getElementById("password").value;
+
+    hideLoginError();
+
+    if(!email || !password){
+
+        showLoginError(
+            "Email এবং Password দিন।"
+        );
+
+        return;
+    }
+
+    if(email.toLowerCase() !== ADMIN_EMAIL.toLowerCase()){
+
+        showLoginError(
+            "শুধু Admin Email দিয়ে Login করা যাবে।"
+        );
+
+        return;
+    }
+
+    document.getElementById("loginLoading").style.display =
+        "block";
+
+    try{
+
+        await auth.signInWithEmailAndPassword(
+            email,
+            password
+        );
+
+    }catch(error){
+
+        console.error(error);
+
+        let message =
+            "Login করা যায়নি। Email অথবা Password সঠিক কিনা দেখুন।";
+
+        if(error.code === "auth/wrong-password"){
+            message = "Password সঠিক নয়।";
+        }
+
+        if(error.code === "auth/user-not-found"){
+            message = "এই Email দিয়ে কোনো Account পাওয়া যায়নি।";
+        }
+
+        if(error.code === "auth/invalid-email"){
+            message = "Email সঠিক নয়।";
+        }
+
+        showLoginError(message);
+
+    }finally{
+
+        document.getElementById("loginLoading").style.display =
+            "none";
+    }
+
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+async function logoutAdmin(){
+
+    try{
+
+        await auth.signOut();
+
+        showToast(
+            "Logout হয়েছে।",
+            "success"
+        );
+
+    }catch(error){
+
+        console.error(error);
+
+    }
+
+}
+
+
+/* =========================================================
+   LOAD BOTH COLLECTIONS
+========================================================= */
+
+async function loadPosts(){
+
+    const container =
+        document.getElementById("postsContainer");
+
+    container.innerHTML = `
+        <div class="loading">
+            <i class="fa-solid fa-spinner"></i>
+            <p>ভিডিও লোড হচ্ছে...</p>
+        </div>
+    `;
+
+    try{
+
+        /*
+         * পুরোনো ভিডিও:
+         * profiles
+         *
+         * নতুন ভিডিও:
+         * newVideos
+         */
+
+        const results = await Promise.all([
+
+            db.collection("profiles").get(),
+
+            db.collection("newVideos").get()
+
+        ]);
+
+
+        const oldSnapshot = results[0];
+
+        const newSnapshot = results[1];
+
+
+        allPosts = [];
+
+
+        /* ================================================
+           OLD VIDEOS
+           Collection: profiles
+        ================================================ */
+
+        oldSnapshot.forEach(function(doc){
+
+            const data = doc.data();
+
+            allPosts.push({
+
+                id: doc.id,
+
+                collection: "profiles",
+
+                ...data
+
+            });
+
+        });
+
+
+        /* ================================================
+           NEW VIDEOS
+           Collection: newVideos
+        ================================================ */
+
+        newSnapshot.forEach(function(doc){
+
+            const data = doc.data();
+
+            allPosts.push({
+
+                id: doc.id,
+
+                collection: "newVideos",
+
+                ...data
+
+            });
+
+        });
+
+
+        /* ================================================
+           SORT NEWEST FIRST
+        ================================================ */
+
+        allPosts.sort(function(a,b){
+
+            return (
+                getTimestamp(b.createdAt) -
+                getTimestamp(a.createdAt)
+            );
+
+        });
+
+
+        updateStats();
+
+        renderPosts();
+
+    }catch(error){
+
+        console.error(
+            "Load Posts Error:",
+            error
+        );
+
+        container.innerHTML = `
+            <div class="empty">
+
+                <i class="fa-solid fa-triangle-exclamation"></i>
+
+                <h3>ভিডিও লোড করা যায়নি</h3>
+
+                <p>
+                    Firestore Rules অথবা Internet Connection
+                    পরীক্ষা করুন।
+                </p>
+
+            </div>
+        `;
+
+        showToast(
+            "ভিডিও লোড করা যায়নি।",
+            "error"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   TIMESTAMP HELPER
+========================================================= */
+
+function getTimestamp(value){
+
+    if(!value){
+        return 0;
+    }
+
+    try{
+
+        if(
+            typeof value === "object" &&
+            typeof value.toMillis === "function"
+        ){
+
+            return value.toMillis();
+
+        }
+
+        if(
+            typeof value === "object" &&
+            value.seconds
+        ){
+
+            return value.seconds * 1000;
+
+        }
+
+        if(value instanceof Date){
+
+            return value.getTime();
+
+        }
+
+        if(typeof value === "number"){
+
+            return value;
+
+        }
+
+        if(typeof value === "string"){
+
+            const parsed =
+                new Date(value).getTime();
+
+            return isNaN(parsed) ? 0 : parsed;
+
+        }
+
+    }catch(error){
+
+        console.error(error);
+
+    }
+
+    return 0;
+}
+
+
+/* =========================================================
+   DATE FORMAT
+========================================================= */
+
+function formatDate(value){
+
+    const timestamp =
+        getTimestamp(value);
+
+    if(!timestamp){
+
+        return "তারিখ নেই";
+
+    }
+
+    try{
+
+        return new Date(timestamp)
+            .toLocaleDateString(
+                "bn-BD",
+                {
+                    year:"numeric",
+                    month:"short",
+                    day:"numeric"
+                }
+            );
+
+    }catch(error){
+
+        return "তারিখ নেই";
+
+    }
+
+}
+
+
+/* =========================================================
+   UPDATE STATS
+========================================================= */
+
+function updateStats(){
+
+    const total =
+        allPosts.length;
+
+    const pending =
+        allPosts.filter(function(post){
+
+            return (post.status || "pending")
+                .toLowerCase() === "pending";
+
+        }).length;
+
+    const published =
+        allPosts.filter(function(post){
+
+            return (post.status || "")
+                .toLowerCase() === "published";
+
+        }).length;
+
+
+    document.getElementById("totalCount")
+        .textContent = total;
+
+    document.getElementById("pendingCount")
+        .textContent = pending;
+
+    document.getElementById("publishedCount")
+        .textContent = published;
+
+}
+
+
+/* =========================================================
+   FILTER
+========================================================= */
+
+function setFilter(filter, button){
+
+    currentFilter = filter;
+
+
+    document.querySelectorAll(".tab")
+        .forEach(function(tab){
+
+            tab.classList.remove("active");
+
+        });
+
+
+    button.classList.add("active");
+
+    renderPosts();
+
+}
+
+
+/* =========================================================
+   RENDER POSTS
+========================================================= */
+
+function renderPosts(){
+
+    const container =
+        document.getElementById("postsContainer");
+
+    const search =
+        document.getElementById("searchInput")
+            .value
+            .trim()
+            .toLowerCase();
+
+
+    let posts =
+        allPosts.filter(function(post){
+
+            const status =
+                (post.status || "pending")
+                    .toLowerCase();
+
+            if(currentFilter !== "all"){
+
+                if(status !== currentFilter){
+
+                    return false;
+
+                }
+
+            }
+
+
+            if(search){
+
+                const title =
+                    String(post.title || "")
+                        .toLowerCase();
+
+                const name =
+                    String(post.name || "")
+                        .toLowerCase();
+
+                const bio =
+                    String(post.bio || "")
+                        .toLowerCase();
+
+                if(
+                    !title.includes(search) &&
+                    !name.includes(search) &&
+                    !bio.includes(search)
+                ){
+
+                    return false;
+
+                }
+
+            }
+
+            return true;
+
+        });
+
+
+    if(!posts.length){
+
+        container.innerHTML = `
+            <div class="empty">
+
+                <i class="fa-solid fa-video-slash"></i>
+
+                <h3>কোনো ভিডিও পাওয়া যায়নি</h3>
+
+                <p>
+                    এই filter বা search অনুযায়ী
+                    কোনো ভিডিও নেই।
+                </p>
+
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        posts.map(function(post){
+
+            return createPostCard(post);
+
+        }).join("");
+
+}
+
+
+/* =========================================================
+   VIDEO TYPE NAME
+========================================================= */
+
+function getVideoTypeName(type){
+
+    const types = {
+
+        google_drive: "Google Drive",
+
+        "google-drive": "Google Drive",
+
+        blogger: "Blogger",
+
+        telegram: "Telegram",
+
+        direct: "Direct Video",
+
+        embedded: "Embedded",
+
+        youtube: "YouTube"
+
+    };
+
+    return types[type] || "Video";
+
+}
+
+
+/* =========================================================
+   VIDEO TYPE ICON
+========================================================= */
+
+function getVideoTypeIcon(type){
+
+    const icons = {
+
+        google_drive: "fa-brands fa-google-drive",
+
+        "google-drive": "fa-brands fa-google-drive",
+
+        blogger: "fa-brands fa-blogger",
+
+        telegram: "fa-brands fa-telegram",
+
+        direct: "fa-solid fa-file-video",
+
+        embedded: "fa-solid fa-code",
+
+        youtube: "fa-brands fa-youtube"
+
+    };
+
+    return icons[type] || "fa-solid fa-video";
+
+}
+
+
+/* =========================================================
+   STATUS BADGE
+========================================================= */
+
+function getStatusBadge(status){
+
+    const current =
+        (status || "pending")
+            .toLowerCase();
+
+
+    if(current === "published"){
+
+        return `
+            <span class="badge badge-published">
+                <i class="fa-solid fa-circle-check"></i>
+                Published
+            </span>
+        `;
+
+    }
+
+
+    if(current === "rejected"){
+
+        return `
+            <span class="badge badge-rejected">
+                <i class="fa-solid fa-circle-xmark"></i>
+                Rejected
+            </span>
+        `;
+
+    }
+
+
+    return `
+        <span class="badge badge-pending">
+            <i class="fa-solid fa-clock"></i>
+            Pending
+        </span>
+    `;
+
+}
+
+
+/* =========================================================
+   CREATE POST CARD
+========================================================= */
+
+function createPostCard(post){
+
+    const collection =
+        post.collection || "newVideos";
+
+
+    const isOld =
+        collection === "profiles";
+
+
+    const collectionBadge = isOld
+
+        ? `
+            <span class="badge badge-old">
+                <i class="fa-solid fa-database"></i>
+                পুরোনো ভিডিও
+            </span>
+          `
+
+        : `
+            <span class="badge badge-new">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                নতুন ভিডিও
+            </span>
+          `;
+
+
+    const videoType =
+        post.videoType || "youtube";
+
+
+    const typeName =
+        isOld
+            ? "YouTube / পুরোনো"
+            : getVideoTypeName(videoType);
+
+
+    const typeIcon =
+        isOld
+            ? "fa-brands fa-youtube"
+            : getVideoTypeIcon(videoType);
+
+
+    const image =
+        post.img ||
+        post.image ||
+        post.imageUrl ||
+        "https://via.placeholder.com/600x350?text=Rater+Tara";
+
+
+    const title =
+        escapeHtml(
+            post.title ||
+            "Untitled Video"
+        );
+
+
+    const name =
+        escapeHtml(
+            post.name ||
+            "Unknown"
+        );
+
+
+    const bio =
+        escapeHtml(
+            post.bio ||
+            ""
+        );
+
+
+    const description =
+        escapeHtml(
+            post.description ||
+            ""
+        );
+
+
+    const status =
+        (post.status || "pending")
+            .toLowerCase();
+
+
+    let actions = `
+
+        <button
+            class="action-btn btn-view"
+            onclick="viewPost(
+                '${safeJs(post.id)}',
+                '${safeJs(collection)}'
+            )"
+        >
+            <i class="fa-solid fa-play"></i>
+            View
+        </button>
+
+    `;
+
+
+    if(status === "published"){
+
+        actions += `
+
+            <button
+                class="action-btn btn-unpublish"
+                onclick="unpublishPost(
+                    '${safeJs(post.id)}',
+                    '${safeJs(collection)}'
+                )"
+            >
+                <i class="fa-solid fa-eye-slash"></i>
+                Unpublish
+            </button>
+
+        `;
+
+    }else{
+
+        actions += `
+
+            <button
+                class="action-btn btn-publish"
+                onclick="publishPost(
+                    '${safeJs(post.id)}',
+                    '${safeJs(collection)}'
+                )"
+            >
+                <i class="fa-solid fa-circle-check"></i>
+                Publish
+            </button>
+
+        `;
+
+    }
+
+
+    if(status !== "rejected"){
+
+        actions += `
+
+            <button
+                class="action-btn btn-reject"
+                onclick="rejectPost(
+                    '${safeJs(post.id)}',
+                    '${safeJs(collection)}'
+                )"
+            >
+                <i class="fa-solid fa-ban"></i>
+                Reject
+            </button>
+
+        `;
+
+    }
+
+
+    actions += `
+
+        <button
+            class="action-btn btn-delete"
+            onclick="deletePost(
+                '${safeJs(post.id)}',
+                '${safeJs(collection)}'
+            )"
+        >
+            <i class="fa-solid fa-trash"></i>
+            Delete
+        </button>
+
+    `;
+
+
+    return `
+
+        <article class="post-card">
+
+            <img
+                class="post-image"
+                src="${escapeHtml(image)}"
+                alt="${title}"
+                loading="lazy"
+                onerror="this.src='https://via.placeholder.com/600x350?text=No+Image';"
+            >
+
+            <div class="post-content">
+
+                <div class="badges">
+
+                    ${collectionBadge}
+
+                    ${getStatusBadge(status)}
+
+                    <span class="badge badge-type">
+
+                        <i class="${typeIcon}"></i>
+
+                        ${escapeHtml(typeName)}
+
+                    </span>
+
+                </div>
+
+
+                <h2 class="post-title">
+                    ${title}
+                </h2>
+
+
+                <div class="post-name">
+
+                    <i class="fa-solid fa-user"></i>
+
+                    ${name}
+
+                </div>
+
+
+                ${
+                    bio
+                    ? `
+                        <div class="post-bio">
+                            ${bio}
+                        </div>
+                      `
+                    : ""
+                }
+
+
+                ${
+                    description
+                    ? `
+                        <div class="post-description">
+                            ${description}
+                        </div>
+                      `
+                    : ""
+                }
+
+
+                <div class="post-meta">
+
+                    <span>
+                        <i class="fa-solid fa-eye"></i>
+                        ${Number(post.views || 0)}
+                    </span>
+
+                    <span>
+                        <i class="fa-regular fa-calendar"></i>
+                        ${formatDate(post.createdAt)}
+                    </span>
+
+                    <span>
+                        <i class="fa-solid fa-layer-group"></i>
+                        ${collection}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="actions">
+
+                ${actions}
+
+            </div>
+
+        </article>
+
+    `;
+
+}
+
+
+/* =========================================================
+   PUBLISH
+========================================================= */
+
+async function publishPost(id, collection){
+
+    if(!confirm("এই ভিডিওটি Publish করতে চান?")){
+
+        return;
+
+    }
+
+
+    try{
+
+        await db
+            .collection(collection)
+            .doc(id)
+            .update({
+
+                status:"published",
+
+                updatedAt:
+                    firebase.firestore.FieldValue
+                    .serverTimestamp()
+
+            });
+
+
+        updateLocalPost(
+            id,
+            collection,
+            {
+                status:"published"
+            }
+        );
+
+
+        updateStats();
+
+        renderPosts();
+
+        showToast(
+            "ভিডিও Publish হয়েছে।",
+            "success"
+        );
+
+    }catch(error){
+
+        console.error(error);
+
+        showToast(
+            "Publish করা যায়নি।",
+            "error"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   UNPUBLISH
+========================================================= */
+
+async function unpublishPost(id, collection){
+
+    if(!confirm("এই ভিডিওটি Unpublish করতে চান?")){
+
+        return;
+
+    }
+
+
+    try{
+
+        await db
+            .collection(collection)
+            .doc(id)
+            .update({
+
+                status:"pending",
+
+                updatedAt:
+                    firebase.firestore.FieldValue
+                    .serverTimestamp()
+
+            });
+
+
+        updateLocalPost(
+            id,
+            collection,
+            {
+                status:"pending"
+            }
+        );
+
+
+        updateStats();
+
+        renderPosts();
+
+        showToast(
+            "ভিডিও Unpublish হয়েছে।",
+            "success"
+        );
+
+    }catch(error){
+
+        console.error(error);
+
+        showToast(
+            "Unpublish করা যায়নি।",
+            "error"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   REJECT
+========================================================= */
+
+async function rejectPost(id, collection){
+
+    if(!confirm("এই ভিডিওটি Reject করতে চান?")){
+
+        return;
+
+    }
+
+
+    try{
+
+        await db
+            .collection(collection)
+            .doc(id)
+            .update({
+
+                status:"rejected",
+
+                updatedAt:
+                    firebase.firestore.FieldValue
+                    .serverTimestamp()
+
+            });
+
+
+        updateLocalPost(
+            id,
+            collection,
+            {
+                status:"rejected"
+            }
+        );
+
+
+        updateStats();
+
+        renderPosts();
+
+        showToast(
+            "ভিডিও Reject হয়েছে।",
+            "success"
+        );
+
+    }catch(error){
+
+        console.error(error);
+
+        showToast(
+            "Reject করা যায়নি।",
+            "error"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   DELETE
+========================================================= */
+
+async function deletePost(id, collection){
+
+    if(!confirm(
+        "সতর্কতা!\n\nএই ভিডিওটি স্থায়ীভাবে Delete হবে।\n\nআপনি কি নিশ্চিত?"
+    )){
+
+        return;
+
+    }
+
+
+    try{
+
+        await db
+            .collection(collection)
+            .doc(id)
+            .delete();
+
+
+        allPosts =
+            allPosts.filter(function(post){
+
+                return !(
+                    post.id === id &&
+                    post.collection === collection
+                );
+
+            });
+
+
+        updateStats();
+
+        renderPosts();
+
+        showToast(
+            "ভিডিও Delete হয়েছে।",
+            "success"
+        );
+
+    }catch(error){
+
+        console.error(error);
+
+        showToast(
+            "ভিডিও Delete করা যায়নি।",
+            "error"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   VIEW VIDEO
+========================================================= */
+
+function viewPost(id, collection){
+
+    const url =
+        "player.html?id=" +
+        encodeURIComponent(id) +
+        "&collection=" +
+        encodeURIComponent(collection);
+
+
+    window.location.href = url;
+
+}
+
+
+/* =========================================================
+   UPDATE LOCAL POST
+========================================================= */
+
+function updateLocalPost(
+    id,
+    collection,
+    changes
+){
+
+    const index =
+        allPosts.findIndex(function(post){
+
+            return (
+                post.id === id &&
+                post.collection === collection
+            );
+
+        });
+
+
+    if(index !== -1){
+
+        Object.assign(
+            allPosts[index],
+            changes
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   SAFE HTML
+========================================================= */
+
+function escapeHtml(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================================================
+   SAFE JAVASCRIPT VALUE
+========================================================= */
+
+function safeJs(value){
+
+    return String(value ?? "")
+        .replace(/\\/g,"\\\\")
+        .replace(/'/g,"\\'")
+        .replace(/"/g,"&quot;")
+        .replace(/\n/g,"\\n")
+        .replace(/\r/g,"\\r");
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+function showToast(message,type="success"){
+
+    const toast =
+        document.getElementById("toast");
+
+
+    toast.textContent =
+        message;
+
+
+    toast.className =
+        "toast show " +
+        type;
+
+
+    setTimeout(function(){
+
+        toast.className =
+            "toast";
+
+    },3000);
+
+}
+
+
+/* =========================================================
+   LOGIN ERROR
+========================================================= */
+
+function showLoginError(message){
+
+    const box =
+        document.getElementById("loginError");
+
+
+    box.textContent =
+        message;
+
+
+    box.style.display =
+        "block";
+
+}
+
+
+function hideLoginError(){
+
+    document.getElementById("loginError")
+        .style.display = "none";
+
+}
+
+
+/* =========================================================
+   ENTER KEY LOGIN
+========================================================= */
+
+document.getElementById("password")
+    .addEventListener(
+        "keydown",
+        function(event){
+
+            if(event.key === "Enter"){
+
+                loginAdmin();
+
+            }
+
+        }
+    );
+
+
+</script>
+
 </body>
 </html>
